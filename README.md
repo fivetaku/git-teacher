@@ -104,10 +104,25 @@ Claude Code가 마켓플레이스 등록 → git-teacher 설치까지 알아서 
 첫 줄은 마켓플레이스 등록 (처음 한 번만), 둘째 줄이 실제 설치입니다.
 설치 후 Claude Code를 **재시작**하세요.
 
+## 사용법 2: 슬래시 명령어
+
+자연어 외에 `/git-teacher` 명령어로도 실행할 수 있습니다:
+
+```
+/git-teacher 시작      → Git 설치 + 프로젝트 폴더 만들기
+/git-teacher 상태      → 현재 상태 확인
+/git-teacher 저장      → 변경 내용 저장 (Commit)
+/git-teacher 올리기    → GitHub에 올리기 (Push)
+/git-teacher 검토      → 검토 요청 만들기 (Pull Request)
+/git-teacher 도움말    → 용어 설명 + FAQ
+/git-teacher           → 뭘 할지 선택
+```
+
 ## 구성요소
 
 | 종류 | 이름 | 역할 |
 |------|------|------|
+| Command | `/git-teacher` | 슬래시 명령어 (인자로 기능 선택) |
 | Skill | `git-teacher-setup` | 단계 1-2: Git 설치 + GitHub 로그인 + 프로젝트 폴더 만들기 |
 | Skill | `git-teacher-status` | 현재 상태를 한국어로 알려줌 ("파일 3개가 수정됨") |
 | Skill | `git-teacher-save` | 단계 3: 변경 내용 저장 (Commit) |
