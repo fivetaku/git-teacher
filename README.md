@@ -88,19 +88,20 @@ Google Docs에서 "수정 제안" 모드로 편집한 뒤 상대에게 보여주
 Claude Code를 열고 아래처럼 입력하세요:
 
 ```
-이 플러그인 설치해줘: https://github.com/fivetaku/gptaku_plugins.git
+이 마켓플레이스에서 git-teacher 설치해줘: https://github.com/fivetaku/gptaku_plugins.git
 ```
 
-Claude Code가 마켓플레이스 등록과 설치를 알아서 진행합니다.
+Claude Code가 마켓플레이스 등록 → git-teacher 설치까지 알아서 진행합니다.
 설치가 끝나면 Claude Code를 **재시작**하세요.
 
-### 방법 2: 슬래시 명령어로 설치
+### 방법 2: 슬래시 명령어로 설치 (2줄)
 
 ```
 /plugin marketplace add https://github.com/fivetaku/gptaku_plugins.git
 /plugin install git-teacher
 ```
 
+첫 줄은 마켓플레이스 등록 (처음 한 번만), 둘째 줄이 실제 설치입니다.
 설치 후 Claude Code를 **재시작**하세요.
 
 ## 구성요소
