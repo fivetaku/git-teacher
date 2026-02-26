@@ -83,14 +83,27 @@ Google Docs에서 "수정 제안" 모드로 편집한 뒤 상대에게 보여주
 
 ## 설치 방법
 
-마켓플레이스를 등록하고 (처음 한 번만), 플러그인을 설치하세요:
+### 1. 마켓플레이스 등록 (처음 한 번만)
 
 ```
 /plugin marketplace add https://github.com/fivetaku/gptaku_plugins.git
+```
+
+### 2. 플러그인 설치
+
+```
 /plugin install git-teacher
 ```
 
-설치 후 Claude Code를 **재시작**하세요.
+### 3. 업데이트
+
+플러그인이 업데이트되면 아래 명령어로 최신 버전을 받을 수 있습니다:
+
+```
+/plugin update
+```
+
+> 설치/업데이트 후에는 Claude Code를 **재시작**하세요.
 
 ## 사용법 2: 슬래시 명령어
 
