@@ -1,6 +1,6 @@
 {
   "name": "git-teacher",
-  "version": "0.1.0",
+  "version": "1.2.0",
   "description": "Git/GitHub onboarding for non-developers using cloud folder analogy. 5-phase approach: setup, save, upload, review, help.",
   "author": {
     "name": "chulrolee"

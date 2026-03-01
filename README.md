@@ -2,7 +2,13 @@
 
 > 비개발자도 Git/GitHub를 쓸 수 있게 해주는 Claude Code 플러그인
 
-## 이게 뭔가요?
+## 이런 분을 위한 도구입니다
+
+- Claude Code를 쓰고 싶은데 Git이 뭔지 모르는 분
+- Git 명령어를 외우기 싫고 **자연어로** 쓰고 싶은 분
+- "commit? push? pull request?" 용어부터 막히는 분
+
+## 어떻게 작동하나요?
 
 Claude Code를 쓰려면 Git과 GitHub가 필요합니다.
 문제는 Git이 **개발자를 위해 만들어진 도구**라서, 처음 보면 뭐가 뭔지 모르겠다는 겁니다.
@@ -131,6 +137,11 @@ Google Docs에서 "수정 제안" 모드로 편집한 뒤 상대에게 보여주
 | Skill | `git-teacher-review` | 단계 5: 검토 요청 만들기 (Pull Request) |
 | Skill | `git-teacher-help` | 용어 사전 + FAQ ("commit이 뭐야?") |
 
-## 만든 사람
+## 요구사항
 
-- [fivetaku](https://github.com/fivetaku)
+- **필수**: Claude Code
+- **선택**: 없음 (모든 도구가 내장되어 있습니다)
+
+## 라이선스
+
+MIT License — [fivetaku](https://github.com/fivetaku)
