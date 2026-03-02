@@ -59,12 +59,24 @@ Homebrew 없을 때: Homebrew 설치를 먼저 안내한다.
 
 #### 2c. Git 사용자 정보 설정 (미설정 시)
 
-AskUserQuestion 도구로 이름과 이메일을 받는다:
+> Git에 이름과 이메일을 등록해야 해요.
+> 구글 계정을 만들 때 이름을 입력하는 것과 같아요.
+> 파일을 저장할 때 "누가 수정했는지" 기록하는 데 쓰여요.
 
-```
-Git에 이름과 이메일을 등록해야 해요.
-구글 계정을 만들 때 이름을 입력하는 것과 같아요.
-파일을 저장할 때 "누가 수정했는지" 기록하는 데 쓰여요.
+**EXECUTE:** 아래 JSON으로 AskUserQuestion 도구를 즉시 호출한다:
+
+```json
+{
+  "questions": [{
+    "question": "Git에 등록할 이름과 이메일을 알려주세요. (예: 홍길동 / hong@email.com)",
+    "header": "사용자 정보",
+    "options": [
+      {"label": "직접 입력", "description": "이름과 이메일을 Other에 입력해주세요 (예: 홍길동 / hong@email.com)"},
+      {"label": "GitHub 계정과 동일", "description": "GitHub 로그인 후 자동으로 가져올게요"}
+    ],
+    "multiSelect": false
+  }]
+}
 ```
 
 ```bash
@@ -99,14 +111,21 @@ gh auth login --web --git-protocol https
 
 ### Step 4: 프로젝트 선택
 
-AskUserQuestion 도구로 선택지를 제시한다:
+**EXECUTE:** 아래 JSON으로 AskUserQuestion 도구를 즉시 호출한다:
 
-```
-question: "프로젝트 폴더를 어떻게 만들까요?"
-options:
-  1. "새 프로젝트 시작하기" — 빈 폴더를 만들어요
-  2. "기존 프로젝트 가져오기" — GitHub에 있는 폴더를 복사해요
-  3. "현재 폴더를 프로젝트로 만들기" — 지금 이 폴더를 Git으로 관리해요
+```json
+{
+  "questions": [{
+    "question": "프로젝트 폴더를 어떻게 만들까요?",
+    "header": "프로젝트",
+    "options": [
+      {"label": "새 프로젝트 시작하기", "description": "빈 폴더를 만들어요"},
+      {"label": "기존 프로젝트 가져오기", "description": "GitHub에 있는 폴더를 복사해요"},
+      {"label": "현재 폴더를 프로젝트로 만들기", "description": "지금 이 폴더를 Git으로 관리해요"}
+    ],
+    "multiSelect": false
+  }]
+}
 ```
 
 #### 선택 1: 새 프로젝트 시작하기

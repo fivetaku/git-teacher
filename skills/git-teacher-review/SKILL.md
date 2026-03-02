@@ -38,15 +38,24 @@ gh auth status 2>&1                    # GitHub CLI 로그인 상태
 
 ### Step 3: 작업 설명 요청
 
-AskUserQuestion 도구를 사용하여 작업 내용을 물어본다:
+> 검토 요청(PR)을 만들어볼게요.
+> Google Docs에서 "수정 제안" 모드 아시죠?
+> 원본은 그대로 두고, "이렇게 바꾸면 어떨까요?" 하고 보내는 거예요.
 
-```
-검토 요청(PR)을 만들어볼게요.
-Google Docs에서 "수정 제안" 모드 아시죠?
-원본은 그대로 두고, "이렇게 바꾸면 어떨까요?" 하고 보내는 거예요.
+**EXECUTE:** 아래 JSON으로 AskUserQuestion 도구를 즉시 호출한다:
 
-어떤 작업을 했는지 한 줄로 적어주세요.
-예: "메인 페이지 디자인 변경", "오타 수정"
+```json
+{
+  "questions": [{
+    "question": "어떤 작업을 했는지 한 줄로 적어주세요.",
+    "header": "작업 설명",
+    "options": [
+      {"label": "직접 입력", "description": "Other에 작업 설명을 입력해주세요 (예: '메인 페이지 디자인 변경', '오타 수정')"},
+      {"label": "자동 생성", "description": "변경 내용을 분석해서 설명을 자동으로 만들어요"}
+    ],
+    "multiSelect": false
+  }]
+}
 ```
 
 ### Step 4: Branch 생성 (사용자에게 숨김)
@@ -130,14 +139,20 @@ Step 2에서 현재 branch가 main/master가 아닌 경우:
 
 ## 충돌 해결
 
-Merge Conflict 감지 시 AskUserQuestion으로 선택지를 제공한다:
+Merge Conflict 감지 시 **EXECUTE:** 아래 JSON으로 AskUserQuestion 도구를 즉시 호출한다:
 
-```
-두 사람이 같은 파일의 같은 부분을 동시에 고쳐서 충돌이 생겼어요.
-어떻게 할까요?
-
-1. "내가 수정한 걸로 유지" — 내 변경 내용을 사용해요
-2. "상대방이 수정한 걸로 유지" — 상대방의 변경 내용을 사용해요
+```json
+{
+  "questions": [{
+    "question": "두 사람이 같은 파일의 같은 부분을 동시에 고쳐서 충돌이 생겼어요. 어떻게 할까요?",
+    "header": "충돌 해결",
+    "options": [
+      {"label": "내가 수정한 걸로 유지", "description": "내 변경 내용을 사용해요"},
+      {"label": "상대방이 수정한 걸로 유지", "description": "상대방의 변경 내용을 사용해요"}
+    ],
+    "multiSelect": false
+  }]
+}
 ```
 
 선택에 따라:

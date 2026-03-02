@@ -66,16 +66,20 @@ GitHub URL은 `git remote get-url origin` 결과에서 추출한다. SSH URL인 
 
 ### Pull 후 충돌 발생 시
 
-`git pull --rebase` 후 충돌이 발생하면 AskUserQuestion으로 선택지를 제공한다:
+`git pull --rebase` 후 충돌이 발생하면 **EXECUTE:** 아래 JSON으로 AskUserQuestion 도구를 즉시 호출한다:
 
-```
-클라우드의 최신 내용을 받아오다가 충돌이 생겼어요.
-두 사람이 같은 부분을 동시에 고쳤거든요.
-충돌 파일: {파일 목록}
-
-어떻게 할까요?
-1. "내가 수정한 걸로 유지" — 내 변경 내용을 사용해요
-2. "상대방이 수정한 걸로 유지" — 상대방의 변경 내용을 사용해요
+```json
+{
+  "questions": [{
+    "question": "클라우드의 최신 내용을 받아오다가 충돌이 생겼어요. 두 사람이 같은 부분을 동시에 고쳤거든요.\n충돌 파일: {파일 목록}\n\n어떻게 할까요?",
+    "header": "충돌 해결",
+    "options": [
+      {"label": "내가 수정한 걸로 유지", "description": "내 변경 내용을 사용해요"},
+      {"label": "상대방이 수정한 걸로 유지", "description": "상대방의 변경 내용을 사용해요"}
+    ],
+    "multiSelect": false
+  }]
+}
 ```
 
 선택에 따라:

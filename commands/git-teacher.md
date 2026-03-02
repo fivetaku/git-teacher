@@ -25,18 +25,25 @@ allowed-tools:
 
 ## 인자 없이 실행한 경우
 
-AskUserQuestion으로 선택지를 제시한다:
+**EXECUTE:** 아래 JSON으로 AskUserQuestion 도구를 즉시 호출한다:
 
+```json
+{
+  "questions": [{
+    "question": "바르다 깃선생이에요. 뭘 도와드릴까요?",
+    "header": "깃선생",
+    "options": [
+      {"label": "시작", "description": "Git 설치 + 프로젝트 폴더 만들기 (처음 한 번만 하면 돼요)"},
+      {"label": "상태", "description": "지금 어떤 파일이 바뀌었는지 확인"},
+      {"label": "저장", "description": "변경 내용을 내 컴퓨터에 저장"},
+      {"label": "올리기", "description": "저장한 내용을 GitHub 클라우드에 올리기"}
+    ],
+    "multiSelect": false
+  }]
+}
 ```
-바르다 깃선생이에요. 뭘 도와드릴까요?
 
-1. "시작" — Git 설치 + 프로젝트 폴더 만들기 (처음 한 번)
-2. "상태" — 지금 어떤 파일이 바뀌었는지 확인
-3. "저장" — 변경 내용을 내 컴퓨터에 저장
-4. "올리기" — 저장한 내용을 GitHub 클라우드에 올리기
-5. "검토" — 팀원에게 확인 요청 보내기
-6. "도움말" — Git 용어가 궁금할 때
-```
+> "검토"와 "도움말"은 Other를 통해 입력할 수 있다.
 
 ## Execute
 
