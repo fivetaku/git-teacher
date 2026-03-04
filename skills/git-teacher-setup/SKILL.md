@@ -40,6 +40,13 @@ macOS:
 xcode-select --install
 ```
 
+Windows: https://git-scm.com/download/win 에서 설치 파일을 다운로드한다.
+
+Linux:
+```bash
+sudo apt-get install git
+```
+
 설치 후 확인: `git --version`
 
 #### 2b. GitHub CLI (gh) 설치 (미설치 시)
@@ -54,6 +61,25 @@ brew install gh
 ```
 
 Homebrew 없을 때: Homebrew 설치를 먼저 안내한다.
+
+Windows:
+```bash
+winget install --id GitHub.cli
+```
+
+Linux:
+```bash
+(type -p wget >/dev/null || (sudo apt update && sudo apt-get install wget -y)) \
+&& sudo mkdir -p -m 755 /etc/apt/keyrings \
+&& out=$(mktemp) && wget -nv -O$out https://cli.github.com/packages/githubcli-archive-keyring.gpg \
+&& cat $out | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null \
+&& sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg \
+&& echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+&& sudo apt update \
+&& sudo apt install gh -y
+```
+
+또는 배포판 저장소에서 바로 설치 가능한 경우: `sudo apt install gh`
 
 설치 후 확인: `gh --version`
 
