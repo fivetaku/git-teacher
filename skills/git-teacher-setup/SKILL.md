@@ -156,12 +156,29 @@ gh auth login --web --git-protocol https
 
 #### 선택 1: 새 프로젝트 시작하기
 
-AskUserQuestion으로 프로젝트 이름을 받는다.
+AskUserQuestion으로 프로젝트 이름을 받은 후, 공개 여부를 확인한다:
+
+**EXECUTE:** AskUserQuestion 도구를 호출한다:
+```json
+{
+  "questions": [
+    {
+      "question": "이 프로젝트를 공개할까요, 비공개로 할까요?",
+      "header": "공개 설정",
+      "options": [
+        {"label": "비공개 (추천)", "description": "내 계정으로만 볼 수 있어요. 나중에 공개로 바꿀 수 있어요."},
+        {"label": "공개", "description": "누구나 볼 수 있어요. 오픈소스 프로젝트에 적합해요."}
+      ],
+      "multiSelect": false
+    }
+  ]
+}
+```
 
 ```bash
 mkdir {project-name} && cd {project-name}
 git init
-gh repo create {project-name} --public --source=. --remote=origin --push
+gh repo create {project-name} --{private|public} --source=. --remote=origin --push
 ```
 
 #### 선택 2: 기존 프로젝트 가져오기
@@ -175,9 +192,11 @@ AskUserQuestion으로 GitHub URL 또는 저장소 이름을 받는다.
 
 #### 선택 3: 현재 폴더를 프로젝트로 만들기
 
+선택 1과 동일하게 공개 여부를 AskUserQuestion으로 확인한 후 실행한다.
+
 ```bash
 git init
-gh repo create {folder-name} --public --source=. --remote=origin --push
+gh repo create {folder-name} --{private|public} --source=. --remote=origin --push
 ```
 
 ### Step 5: Phase 2 완료 확인
