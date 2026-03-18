@@ -20,7 +20,7 @@ Claude Code를 쓰려면 Git과 GitHub가 필요합니다.
 3. 복잡한 과정은 자동으로 처리하고, **뭘 했는지 결과만** 알려줍니다
 4. 딱 **5단계**만 알면 됩니다
 
-## 왜 필요한가요?
+### 왜 필요한가요?
 
 Git은 원래 소프트웨어 개발자가 코드를 관리하기 위해 만든 도구입니다. 하지만 Claude Code로 프로젝트를 진행하려면 비개발자도 Git을 써야 합니다.
 
@@ -31,7 +31,7 @@ Git은 원래 소프트웨어 개발자가 코드를 관리하기 위해 만든 
 
 바르다 깃선생은 **"이미 아는 것"에서 시작**합니다. Google Drive를 써본 적 있다면, Git의 80%는 이미 아는 겁니다.
 
-## 핵심 개념: Google Drive와 뭐가 다른가요?
+### 핵심 개념: Google Drive와 뭐가 다른가요?
 
 | Google Drive | Git | 같은 점 / 다른 점 |
 |-------------|-----|-------------------|
@@ -44,7 +44,33 @@ Git은 원래 소프트웨어 개발자가 코드를 관리하기 위해 만든 
 > 가장 중요한 차이: Google Drive는 파일을 수정하면 자동으로 클라우드에 올라갑니다.
 > Git은 **직접 "저장"하고 "올려야"** 합니다. 이 두 단계를 잊으면 작업이 내 컴퓨터에만 남아요.
 
-## 5단계로 시작하기
+## 빠른 시작
+
+### 1. 설치
+
+#### 마켓플레이스 등록 (처음 한 번만)
+
+```
+/plugin marketplace add https://github.com/fivetaku/gptaku_plugins.git
+```
+
+#### 플러그인 설치
+
+```
+/plugin install git-teacher
+```
+
+#### 업데이트
+
+플러그인이 업데이트되면 아래 명령어로 최신 버전을 받을 수 있습니다:
+
+```
+/plugin update
+```
+
+> 설치/업데이트 후에는 Claude Code를 **재시작**하세요.
+
+### 2. 첫 실행
 
 ```
 단계 1: 준비하기       → "앱 설치하고 로그인하기"
@@ -54,25 +80,37 @@ Git은 원래 소프트웨어 개발자가 코드를 관리하기 위해 만든 
 단계 5: 검토 요청하기   → "이거 확인해주세요" 하고 팀원에게 보내기
 ```
 
-### 단계 1-2: 준비하기 + 폴더 만들기 (처음 한 번만)
+#### 단계 1-2: 준비하기 + 폴더 만들기 (처음 한 번만)
 
 Google Drive를 처음 쓸 때 앱을 설치하고 계정을 만드는 것처럼, Git도 처음 한 번 설정이 필요합니다.
 "깃 시작해줘"라고 말하면 설치부터 프로젝트 폴더 생성까지 알아서 해줍니다.
 
-### 단계 3: 저장하기 (Commit)
+#### 단계 3: 저장하기 (Commit)
 
 파일을 수정한 뒤 "저장해줘"라고 말하면, 변경 내용을 포장해서 기록합니다.
 이 단계에서는 **아직 내 컴퓨터에만** 저장됩니다. 클라우드에는 안 올라갔어요.
 
-### 단계 4: 올리기 (Push)
+#### 단계 4: 올리기 (Push)
 
 "올려줘"라고 말하면 저장한 내용이 GitHub 클라우드에 올라갑니다.
 이제 다른 사람도 내 작업을 볼 수 있어요.
 
-### 단계 5: 검토 요청하기 (Pull Request)
+#### 단계 5: 검토 요청하기 (Pull Request)
 
 "검토 요청해줘"라고 말하면, 내가 바꾼 내용을 팀원에게 "확인해주세요" 하고 보냅니다.
 Google Docs에서 "수정 제안" 모드로 편집한 뒤 상대에게 보여주는 것과 같아요.
+
+## 핵심 기능
+
+| 종류 | 이름 | 역할 |
+|------|------|------|
+| Command | `/git-teacher` | 슬래시 명령어 (인자로 기능 선택) |
+| Skill | `git-teacher-setup` | 단계 1-2: Git 설치 + GitHub 로그인 + 프로젝트 폴더 만들기 |
+| Skill | `git-teacher-status` | 현재 상태를 한국어로 알려줌 ("파일 3개가 수정됨") |
+| Skill | `git-teacher-save` | 단계 3: 변경 내용 저장 (Commit) |
+| Skill | `git-teacher-upload` | 단계 4: 저장한 내용을 GitHub에 올리기 (Push) |
+| Skill | `git-teacher-review` | 단계 5: 검토 요청 만들기 (Pull Request) |
+| Skill | `git-teacher-help` | 용어 사전 + FAQ ("commit이 뭐야?") |
 
 ## 사용법
 
@@ -87,32 +125,6 @@ Google Docs에서 "수정 제안" 모드로 편집한 뒤 상대에게 보여주
 | 검토 요청 (Pull Request) | "PR 만들어줘", "검토 요청해줘" |
 | 용어 질문 | "commit이 뭐야?", "push랑 commit 차이" |
 
-## 설치 방법
-
-### 1. 마켓플레이스 등록 (처음 한 번만)
-
-```
-/plugin marketplace add https://github.com/fivetaku/gptaku_plugins.git
-```
-
-### 2. 플러그인 설치
-
-```
-/plugin install git-teacher
-```
-
-### 3. 업데이트
-
-플러그인이 업데이트되면 아래 명령어로 최신 버전을 받을 수 있습니다:
-
-```
-/plugin update
-```
-
-> 설치/업데이트 후에는 Claude Code를 **재시작**하세요.
-
-## 사용법 2: 슬래시 명령어
-
 자연어 외에 `/git-teacher` 명령어로도 실행할 수 있습니다:
 
 ```
@@ -125,17 +137,27 @@ Google Docs에서 "수정 제안" 모드로 편집한 뒤 상대에게 보여주
 /git-teacher           → 뭘 할지 선택
 ```
 
-## 구성요소
+## 파일 구조
 
-| 종류 | 이름 | 역할 |
-|------|------|------|
-| Command | `/git-teacher` | 슬래시 명령어 (인자로 기능 선택) |
-| Skill | `git-teacher-setup` | 단계 1-2: Git 설치 + GitHub 로그인 + 프로젝트 폴더 만들기 |
-| Skill | `git-teacher-status` | 현재 상태를 한국어로 알려줌 ("파일 3개가 수정됨") |
-| Skill | `git-teacher-save` | 단계 3: 변경 내용 저장 (Commit) |
-| Skill | `git-teacher-upload` | 단계 4: 저장한 내용을 GitHub에 올리기 (Push) |
-| Skill | `git-teacher-review` | 단계 5: 검토 요청 만들기 (Pull Request) |
-| Skill | `git-teacher-help` | 용어 사전 + FAQ ("commit이 뭐야?") |
+```
+git-teacher/
+├── .claude-plugin/
+│   └── plugin.json          # 플러그인 메타데이터
+├── commands/
+│   └── git-teacher.md       # 슬래시 명령어 정의
+├── skills/
+│   ├── git-teacher-setup/   # 단계 1-2: 설치 + 설정
+│   ├── git-teacher-status/  # 상태 확인
+│   ├── git-teacher-save/    # 단계 3: 저장 (Commit)
+│   ├── git-teacher-upload/  # 단계 4: 올리기 (Push)
+│   ├── git-teacher-review/  # 단계 5: 검토 요청 (PR)
+│   └── git-teacher-help/    # 용어 사전 + FAQ
+│       └── references/
+│           ├── glossary.md  # 용어집 (클라우드 비유)
+│           └── gotchas.md   # 자주 하는 실수
+├── CHANGELOG.md
+└── README.md
+```
 
 ## 요구사항
 

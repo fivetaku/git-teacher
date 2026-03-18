@@ -169,3 +169,5 @@ Git 오류 메시지를 번역해주고 해결 방법을 안내한다.
 ## References
 
 Refer to `${CLAUDE_PLUGIN_ROOT}/skills/git-teacher-help/references/glossary.md` for the complete term glossary with cloud analogies and FAQ.
+
+Refer to `${CLAUDE_PLUGIN_ROOT}/skills/git-teacher-help/references/gotchas.md` for common pitfalls and how to explain them to non-developers.
