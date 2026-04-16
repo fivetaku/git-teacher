@@ -1,161 +1,167 @@
-# 바르다 깃선생 (git-teacher)
+한국어 | [English](README.md)
 
-> 비개발자도 Git/GitHub를 쓸 수 있게 해주는 Claude Code 플러그인
+> Switch to Korean: [README.ko.md](README.ko.md)
 
-## 이런 분을 위한 도구입니다
+# git-teacher
 
-- Claude Code를 쓰고 싶은데 Git이 뭔지 모르는 분
-- Git 명령어를 외우기 싫고 **자연어로** 쓰고 싶은 분
-- "commit? push? pull request?" 용어부터 막히는 분
+> **Git and GitHub for people who never wanted to learn Git.**
 
-## 어떻게 작동하나요?
+You don't need to memorize commands. You don't need to know what a "commit hash" is. If you've ever used Google Drive, you already understand 80% of Git — you just don't know it yet.
 
-Claude Code를 쓰려면 Git과 GitHub가 필요합니다.
-문제는 Git이 **개발자를 위해 만들어진 도구**라서, 처음 보면 뭐가 뭔지 모르겠다는 겁니다.
+[Quick Start](#quick-start) • [Why git-teacher?](#why-git-teacher) • [How it works](#how-it-works) • [Features](#features) • [Requirements](#requirements)
 
-이 플러그인은 다릅니다:
+---
 
-1. 여러분이 이미 아는 **Google Drive, Dropbox** 경험에 빗대어 설명합니다
-2. 명령어를 외울 필요 없이 **"저장해줘", "올려줘"** 같은 자연어로 동작합니다
-3. 복잡한 과정은 자동으로 처리하고, **뭘 했는지 결과만** 알려줍니다
-4. 딱 **5단계**만 알면 됩니다
+## Quick Start
 
-### 왜 필요한가요?
-
-Git은 원래 소프트웨어 개발자가 코드를 관리하기 위해 만든 도구입니다. 하지만 Claude Code로 프로젝트를 진행하려면 비개발자도 Git을 써야 합니다.
-
-기존에도 Git 입문 자료는 많지만, 대부분 개발자 관점에서 쓰여 있어서:
-- 전문 용어가 설명 없이 등장하고
-- "왜 이걸 해야 하는지"보다 "어떻게 하는지"에 집중하고
-- 첫 날부터 알 필요 없는 고급 기능까지 다룹니다
-
-바르다 깃선생은 **"이미 아는 것"에서 시작**합니다. Google Drive를 써본 적 있다면, Git의 80%는 이미 아는 겁니다.
-
-### 핵심 개념: Google Drive와 뭐가 다른가요?
-
-| Google Drive | Git | 같은 점 / 다른 점 |
-|-------------|-----|-------------------|
-| 드라이브 앱 설치 | Git + GitHub CLI 설치 | 같음 — 앱을 깔아야 시작할 수 있어요 |
-| 구글 계정으로 로그인 | GitHub 계정 연결 | 같음 — 계정이 있어야 클라우드를 써요 |
-| 공유 폴더 만들기 | Repository(프로젝트 폴더) 만들기 | 같음 — 파일을 담을 폴더가 필요해요 |
-| 파일 수정하면 **자동 동기화** | **자동 아님!** 직접 저장하고 올려야 함 | **핵심 차이** |
-| Google Docs "수정 제안" | Pull Request(검토 요청) | 비슷 — "이렇게 바꾸면 어떨까요?" |
-
-> 가장 중요한 차이: Google Drive는 파일을 수정하면 자동으로 클라우드에 올라갑니다.
-> Git은 **직접 "저장"하고 "올려야"** 합니다. 이 두 단계를 잊으면 작업이 내 컴퓨터에만 남아요.
-
-## 빠른 시작
-
-### 1. 설치
-
-#### 마켓플레이스 등록 (처음 한 번만)
+### 1. Add the marketplace (once)
 
 ```
 /plugin marketplace add https://github.com/fivetaku/gptaku_plugins.git
 ```
 
-#### 플러그인 설치
+### 2. Install the plugin
 
 ```
 /plugin install git-teacher
 ```
 
-> 설치 후에는 Claude Code를 **재시작**하세요.
+### 3. Restart Claude Code
 
-### 2. 첫 실행
+Restart is required for the plugin to load.
 
-```
-단계 1: 준비하기       → "앱 설치하고 로그인하기"
-단계 2: 폴더 만들기    → "공유 폴더 만들기"
-단계 3: 저장하기       → "파일을 포장해서 라벨 붙이기" (아직 내 컴퓨터에만!)
-단계 4: 올리기         → "포장한 파일을 클라우드에 보내기"
-단계 5: 검토 요청하기   → "이거 확인해주세요" 하고 팀원에게 보내기
-```
-
-#### 단계 1-2: 준비하기 + 폴더 만들기 (처음 한 번만)
-
-Google Drive를 처음 쓸 때 앱을 설치하고 계정을 만드는 것처럼, Git도 처음 한 번 설정이 필요합니다.
-"깃 시작해줘"라고 말하면 설치부터 프로젝트 폴더 생성까지 알아서 해줍니다.
-
-#### 단계 3: 저장하기 (Commit)
-
-파일을 수정한 뒤 "저장해줘"라고 말하면, 변경 내용을 포장해서 기록합니다.
-이 단계에서는 **아직 내 컴퓨터에만** 저장됩니다. 클라우드에는 안 올라갔어요.
-
-#### 단계 4: 올리기 (Push)
-
-"올려줘"라고 말하면 저장한 내용이 GitHub 클라우드에 올라갑니다.
-이제 다른 사람도 내 작업을 볼 수 있어요.
-
-#### 단계 5: 검토 요청하기 (Pull Request)
-
-"검토 요청해줘"라고 말하면, 내가 바꾼 내용을 팀원에게 "확인해주세요" 하고 보냅니다.
-Google Docs에서 "수정 제안" 모드로 편집한 뒤 상대에게 보여주는 것과 같아요.
-
-## 핵심 기능
-
-| 종류 | 이름 | 역할 |
-|------|------|------|
-| Command | `/git-teacher` | 슬래시 명령어 (인자로 기능 선택) |
-| Skill | `git-teacher-setup` | 단계 1-2: Git 설치 + GitHub 로그인 + 프로젝트 폴더 만들기 |
-| Skill | `git-teacher-status` | 현재 상태를 한국어로 알려줌 ("파일 3개가 수정됨") |
-| Skill | `git-teacher-save` | 단계 3: 변경 내용 저장 (Commit) |
-| Skill | `git-teacher-upload` | 단계 4: 저장한 내용을 GitHub에 올리기 (Push) |
-| Skill | `git-teacher-review` | 단계 5: 검토 요청 만들기 (Pull Request) |
-| Skill | `git-teacher-help` | 용어 사전 + FAQ ("commit이 뭐야?") |
-
-## 사용법
-
-슬래시 명령어를 외울 필요 없습니다. **자연스럽게 말하면** 됩니다.
-
-| 하고 싶은 것 | 이렇게 말하세요 |
-|-------------|----------------|
-| 처음 설정 | "깃 시작해줘", "깃 설정", "처음이에요" |
-| 현재 상태 확인 | "지금 어떤 상태?", "뭐가 바뀌었어?" |
-| 저장 (Commit) | "저장해줘", "커밋", "세이브" |
-| 클라우드에 올리기 (Push) | "올려줘", "푸시", "업로드" |
-| 검토 요청 (Pull Request) | "PR 만들어줘", "검토 요청해줘" |
-| 용어 질문 | "commit이 뭐야?", "push랑 commit 차이" |
-
-자연어 외에 `/git-teacher` 명령어로도 실행할 수 있습니다:
+### 4. Start the setup
 
 ```
-/git-teacher 시작      → Git 설치 + 프로젝트 폴더 만들기
-/git-teacher 상태      → 현재 상태 확인
-/git-teacher 저장      → 변경 내용 저장 (Commit)
-/git-teacher 올리기    → GitHub에 올리기 (Push)
-/git-teacher 검토      → 검토 요청 만들기 (Pull Request)
-/git-teacher 도움말    → 용어 설명 + FAQ
-/git-teacher           → 뭘 할지 선택
+/git-teacher 시작
 ```
 
-## 파일 구조
+Or just say: `"깃 시작해줘"` — the plugin understands natural language.
+
+### 5. Follow the 5-step flow
 
 ```
-git-teacher/
-├── .claude-plugin/
-│   └── plugin.json          # 플러그인 메타데이터
-├── commands/
-│   └── git-teacher.md       # 슬래시 명령어 정의
-├── skills/
-│   ├── git-teacher-setup/   # 단계 1-2: 설치 + 설정
-│   ├── git-teacher-status/  # 상태 확인
-│   ├── git-teacher-save/    # 단계 3: 저장 (Commit)
-│   ├── git-teacher-upload/  # 단계 4: 올리기 (Push)
-│   ├── git-teacher-review/  # 단계 5: 검토 요청 (PR)
-│   └── git-teacher-help/    # 용어 사전 + FAQ
-│       └── references/
-│           ├── glossary.md  # 용어집 (클라우드 비유)
-│           └── gotchas.md   # 자주 하는 실수
-├── CHANGELOG.md
-└── README.md
+Step 1 + 2: Setup       → install tools, create your project folder (once)
+Step 3: Save            → "저장해줘"   (commit your changes)
+Step 4: Upload          → "올려줘"    (push to GitHub)
+Step 5: Request review  → "검토 요청해줘"  (open a pull request)
 ```
 
-## 요구사항
+---
 
-- **필수**: Claude Code
-- **선택**: 없음 (모든 도구가 내장되어 있습니다)
+## Why git-teacher?
 
-## 라이선스
+- **No command memorization** — say what you want to do in plain Korean, the plugin figures out the rest
+- **Analogy-first explanations** — every concept is explained using Google Drive, Dropbox, or iCloud, not developer jargon
+- **Skips what you already did** — setup detects your current state and only runs the steps you actually need
+- **Translates Git output** — instead of `fatal: not a git repository`, you get "이 폴더는 Git 프로젝트 폴더가 아니에요"
+- **Handles the hard parts** — merge conflicts, detached HEAD, stash — explained in plain language with clear choices
 
-MIT License — [fivetaku](https://github.com/fivetaku)
+---
+
+## How it works
+
+Git has one core difference from Google Drive: **nothing syncs automatically**. Every save and every upload is a manual step. Once you know that, the rest follows.
+
+```
+You edit a file
+       │
+       ▼
+  Save (Commit)          ← "저장해줘"
+  Packages your changes
+  Still only on your machine
+       │
+       ▼
+  Upload (Push)          ← "올려줘"
+  Sends to GitHub cloud
+  Now others can see it
+       │
+       ▼
+  Request Review (PR)    ← "검토 요청해줘"
+  "Hey team, check this out"
+  Like Google Docs suggestion mode
+```
+
+### The Google Drive comparison
+
+| Google Drive | Git | Key difference |
+|---|---|---|
+| Install the app | Install Git + GitHub CLI | Same — you need an app to start |
+| Log in with Google account | Connect GitHub account | Same — you need an account for the cloud |
+| Create a shared folder | Create a repository | Same — a folder to hold your files |
+| Files sync automatically | **Files do NOT sync automatically** | **This is the big one** |
+| "Suggest edits" mode | Pull Request | Similar — "here's what I changed, please review" |
+
+> The most important thing to remember: Google Drive auto-syncs. Git does not. You have to save (commit) and upload (push) manually. If you forget, your work stays on your machine only.
+
+---
+
+## Features
+
+### Commands
+
+| Command | What it does |
+|---|---|
+| `/git-teacher` | Opens a menu to pick what you want to do |
+| `/git-teacher 시작` | Setup: install tools + create project folder |
+| `/git-teacher 상태` | Status: what changed since your last save? |
+| `/git-teacher 저장` | Save: commit your changes locally |
+| `/git-teacher 올리기` | Upload: push commits to GitHub |
+| `/git-teacher 검토` | Review: open a pull request |
+| `/git-teacher 도움말` | Help: explain any Git term with analogies |
+
+### Natural language triggers
+
+You don't have to use slash commands. These phrases work too:
+
+| What you want | Say this |
+|---|---|
+| First-time setup | "깃 시작해줘", "깃 설정", "처음이에요" |
+| Check current state | "지금 어떤 상태?", "뭐가 바뀌었어?" |
+| Save changes (Commit) | "저장해줘", "커밋", "세이브" |
+| Upload to GitHub (Push) | "올려줘", "푸시", "업로드" |
+| Request review (PR) | "PR 만들어줘", "검토 요청해줘" |
+| Ask about a term | "commit이 뭐야?", "push랑 commit 차이" |
+
+### Skills
+
+| Skill | Phase | Description |
+|---|---|---|
+| `git-teacher-setup` | 1–2 | Install Git, connect GitHub, create project folder |
+| `git-teacher-status` | — | Translate `git status` into plain Korean |
+| `git-teacher-save` | 3 | Commit changes with a natural-language summary |
+| `git-teacher-upload` | 4 | Push commits to GitHub |
+| `git-teacher-review` | 5 | Create a pull request |
+| `git-teacher-help` | — | Term glossary + FAQ using cloud analogies |
+
+### Help system
+
+The `git-teacher-help` skill answers questions like:
+
+- "commit이 뭐야?" → one-line summary + Google Drive analogy
+- "push랑 commit 차이?" → comparison table
+- "Git 작업 흐름이 어떻게 돼?" → full flow diagram in plain language
+- "fatal: not a git repository 이게 뭐야?" → translation + what to do next
+
+---
+
+## Requirements
+
+- [Claude Code](https://docs.anthropic.com/claude-code) CLI
+- Claude Max/Pro subscription or a supported Claude API key
+
+No additional dependencies. No npm install. No build step.
+
+---
+
+## License
+
+MIT — [fivetaku](https://github.com/fivetaku)
+
+---
+
+<div align="center">
+
+**Git is not hard. It just needs a better teacher.**
+
+</div>
