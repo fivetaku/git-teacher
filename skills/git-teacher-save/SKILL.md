@@ -1,6 +1,6 @@
 ---
 name: git-teacher-save
-description: 변경된 파일을 저장(Commit)하는 스킬. "저장해줘", "커밋", "커밋해줘", "save", "변경 내용 저장", "지금까지 한 거 저장", "세이브" 같은 요청에 사용됩니다.
+description: Commits changed files to Git, explained in plain language for non-developers. Runs `git add -A` + `git commit` and describes what was saved. Korean triggers: "저장해줘", "커밋", "커밋해줘", "변경 내용 저장", "지금까지 한 거 저장", "세이브". English triggers: "save", "commit", "save my work".
 ---
 
 # 저장하기 — Phase 3 (바르다 깃선생)

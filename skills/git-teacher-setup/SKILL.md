@@ -1,6 +1,6 @@
 ---
 name: git-teacher-setup
-description: Git/GitHub 초기 설정부터 프로젝트 폴더 생성까지 안내하는 스킬. "깃 시작", "깃 설정", "처음이에요", "git 설치", "GitHub 연결", "프로젝트 만들기", "깃 세팅", "시작하기" 같은 요청에 사용됩니다.
+description: Initial Git/GitHub setup and project folder creation for non-developers — handles install, GitHub connection, and first project scaffold. Auto-skips completed steps. Korean triggers: "깃 시작", "깃 설정", "처음이에요", "git 설치", "GitHub 연결", "프로젝트 만들기", "깃 세팅", "시작하기". English triggers: "start with git", "git setup", "connect GitHub", "new project".
 ---
 
 # 시작하기 — Phase 1 + 2 (바르다 깃선생)

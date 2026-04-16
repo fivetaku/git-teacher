@@ -1,6 +1,6 @@
 ---
 name: git-teacher-status
-description: 현재 Git 상태를 한국어 자연어로 번역해서 보여주는 스킬. "상태 확인", "지금 어떤 상태?", "뭐가 바뀌었어?", "git status", "변경 사항", "뭐가 달라졌어?", "파일 확인" 같은 요청에 사용됩니다.
+description: Translates current Git status into plain-language explanations for non-developers. Korean triggers: "상태 확인", "지금 어떤 상태?", "뭐가 바뀌었어?", "git status", "변경 사항", "뭐가 달라졌어?", "파일 확인". English triggers: "check status", "what changed", "git status".
 ---
 
 # 상태 확인 (바르다 깃선생)

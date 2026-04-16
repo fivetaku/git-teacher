@@ -1,6 +1,6 @@
 ---
 name: git-teacher-upload
-description: 저장한 내용을 GitHub에 올리는(Push) 스킬. "올려줘", "푸시", "push", "업로드", "GitHub에 올려줘", "클라우드에 보내줘", "올리기" 같은 요청에 사용됩니다.
+description: Pushes committed work to GitHub cloud, returning the GitHub URL on success. For non-developers. Korean triggers: "올려줘", "푸시", "업로드", "GitHub에 올려줘", "클라우드에 보내줘", "올리기". English triggers: "push", "upload", "push to GitHub".
 ---
 
 # 올리기 — Phase 4 (바르다 깃선생)

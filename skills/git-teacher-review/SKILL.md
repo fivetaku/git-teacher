@@ -1,6 +1,6 @@
 ---
 name: git-teacher-review
-description: Branch 생성부터 PR 생성까지 자동으로 처리하는 검토 요청 스킬. "PR 만들어줘", "검토 요청", "리뷰 요청", "pull request", "수정 제안", "팀원한테 보여주고 싶어", "확인 요청" 같은 요청에 사용됩니다.
+description: Automated review request workflow — handles branch creation, commit, push, and PR creation as one step. Hides Git branch jargon from users and presents it as "a safe workspace to show your teammates." Korean triggers: "PR 만들어줘", "검토 요청", "리뷰 요청", "수정 제안", "팀원한테 보여주고 싶어", "확인 요청". English triggers: "create PR", "pull request", "request review", "show teammates".
 ---
 
 # 검토 요청하기 — Phase 5 (바르다 깃선생)
