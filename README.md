@@ -1,6 +1,4 @@
-한국어 | [English](README.md)
-
-> Switch to Korean: [README.ko.md](README.ko.md)
+English | [한국어](README.ko.md)
 
 # git-teacher
 
