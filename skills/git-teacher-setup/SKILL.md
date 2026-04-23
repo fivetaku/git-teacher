@@ -157,11 +157,12 @@ gh auth login --web --git-protocol https
 #### 선택 1: 새 프로젝트 시작하기
 
 AskUserQuestion으로 프로젝트 이름을 받는다.
+AskUserQuestion으로 레포지토리 공개 여부를 확인한다 (공개/비공개).
 
 ```bash
 mkdir {project-name} && cd {project-name}
 git init
-gh repo create {project-name} --public --source=. --remote=origin --push
+gh repo create {project-name} --{public|private} --source=. --remote=origin --push
 ```
 
 #### 선택 2: 기존 프로젝트 가져오기
@@ -175,9 +176,11 @@ AskUserQuestion으로 GitHub URL 또는 저장소 이름을 받는다.
 
 #### 선택 3: 현재 폴더를 프로젝트로 만들기
 
+AskUserQuestion으로 레포지토리 공개 여부를 확인한다 (공개/비공개).
+
 ```bash
 git init
-gh repo create {folder-name} --public --source=. --remote=origin --push
+gh repo create {folder-name} --{public|private} --source=. --remote=origin --push
 ```
 
 ### Step 5: Phase 2 완료 확인
