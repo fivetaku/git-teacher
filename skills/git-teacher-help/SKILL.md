@@ -15,6 +15,8 @@ description: Explains Git/GitHub terminology using cloud-folder analogies (Dropb
 
 ## 응답 규칙
 
+> 아래 질문 유형은 **흔한 패턴 예시**다. 사용자 질문이 어디에 속하는지 모호하면 **다중 분류** 가능 (예: "rebase가 뭐야 그리고 언제 써?" → 용어 + 방법 결합). 카탈로그에 없는 새 유형은 generic 응답 + 적절한 references 참조.
+
 ### 용어 질문일 때
 
 1. glossary.md에서 해당 용어를 찾는다
