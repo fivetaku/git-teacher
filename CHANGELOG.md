@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.4.1] - 2026-05-04
+
+### Changed
+- `git-teacher-help/references/gotchas.md` — "흔한 실수 예시"임을 명시, 도메인별 추가 가능 (user override)
+- `git-teacher-help/SKILL.md` 응답 규칙 — 질문 유형은 흔한 패턴 예시, 다중 분류 허용, 카탈로그에 없는 새 유형은 generic 응답
+
+### Preserved (vibe-sunsang 패턴 — 결정+멘토링 둘 다 정당)
+- Git 명령 시퀀스 (결정 contract)
+- 클라우드 비유 멘토링 톤 (도메인 본질)
+- glossary.md / aliases.md (참조 데이터)
+
 ## [1.4.0] - 2026-03-18
 
 ### Added
