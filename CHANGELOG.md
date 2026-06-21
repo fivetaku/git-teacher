@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.5.3 — 2026-06-21
+
+- GitHub star is now **opt-in** — on first run the command asks once via AskUserQuestion (`네, ⭐ 눌러주기` / `아니요`) instead of auto-starring. The star logic moved into `setup.sh` and records the choice (`~/.gptaku-setup/<plugin>.star.json`) so it never re-asks. `setup.sh` no longer stars anything automatically.
+- Fixed: rebase conflict resolution had `ours`/`theirs` mapped backwards. In a rebase `--ours` is the upstream side and `--theirs` is your replayed commit, so '내 거 유지' now correctly uses `--theirs`.
+
 ## [1.4.1] - 2026-05-04
 
 ### Changed
