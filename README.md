@@ -1,6 +1,10 @@
-English | [한국어](README.ko.md)
+English | [한국어](README.ko.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [Español](README.es.md)
 
 # git-teacher
+
+<p align="center">
+  <img src="assets/git-teacher-hero-01.png" alt="git-teacher" width="320">
+</p>
 
 > **Git and GitHub for people who never wanted to learn Git.**
 

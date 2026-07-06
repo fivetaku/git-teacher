@@ -1,6 +1,10 @@
-[English](README.md) | 한국어
+[English](README.md) | 한국어 | [中文](README.zh.md) | [日本語](README.ja.md) | [Español](README.es.md)
 
 # 바르다 깃선생
+
+<p align="center">
+  <img src="assets/git-teacher-hero-01.png" alt="git-teacher" width="320">
+</p>
 
 > **Git을 배우고 싶지 않았던 사람들을 위한 Git/GitHub 플러그인.**
 
