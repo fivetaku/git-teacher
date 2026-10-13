@@ -1,0 +1,37 @@
+{
+  "routes": [
+    {
+      "skill": "git-teacher:git-teacher-help",
+      "when": "Git·GitHub 용어를 처음 배우는 사용자가 개념을 물을 때",
+      "priority": 15,
+      "keywords": [
+        "깃 처음",
+        "git 처음",
+        "깃 용어",
+        "깃이 뭐",
+        "git이 뭐",
+        "commit이 뭐",
+        "커밋이 뭐",
+        "push가 뭐",
+        "푸시가 뭐",
+        "branch가 뭐",
+        "브랜치가 뭐",
+        "pr이 뭐",
+        "깃허브가 뭐"
+      ]
+    },
+    {
+      "skill": "git-teacher:git-teacher-setup",
+      "when": "Git 설치·GitHub 연결 같은 첫 설정을 할 때",
+      "priority": 15,
+      "keywords": [
+        "깃 설정",
+        "깃 세팅",
+        "깃 시작",
+        "git 설치",
+        "github 연결",
+        "깃허브 연결"
+      ]
+    }
+  ]
+}
