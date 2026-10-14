@@ -18,7 +18,8 @@
         "브랜치가 뭐",
         "pr이 뭐",
         "깃허브가 뭐"
-      ]
+      ],
+      "any_mood": true
     },
     {
       "skill": "git-teacher:git-teacher-setup",
@@ -32,6 +33,12 @@
         "github 연결",
         "깃허브 연결"
       ]
+    },
+    {
+      "skill": "git-teacher:git-teacher",
+      "when": "Git·GitHub 작업 전반을 쉽게 도움받을 때",
+      "priority": 5,
+      "keywords": []
     }
   ]
 }
