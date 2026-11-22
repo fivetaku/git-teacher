@@ -1,7 +1,7 @@
 ---
 name: git-teacher
 description: "바르다 깃선생 — Git/GitHub를 쉽게 도와주는 명령어"
-argument-hint: "[시작|상태|저장|올리기|검토|도움말]"
+argument-hint: "[시작|상태|저장|올리기|검토|되돌리기|도움말]"
 allowed-tools:
   - Bash
   - Read
@@ -40,6 +40,7 @@ If the output is empty, just continue silently. (AskUserQuestion must NOT be in 
 | `검토`, `review`, `PR`, `pr` | 검토 요청(Pull Request) 만들기 | git-teacher-review |
 | `도움말`, `help`, `?` | 용어 설명 + FAQ | git-teacher-help |
 | (인자 없음) | 안내 메시지 출력 후 선택 | 아래 참조 |
+| `되돌리기`, `undo`, `취소`, `복구` | 파일·저장 되돌리기, /rewind와 Git 저장의 차이 | git-teacher-undo |
 
 ## 인자 없이 실행한 경우
 

@@ -35,6 +35,21 @@
       ]
     },
     {
+      "skill": "git-teacher:git-teacher-undo",
+      "when": "비개발자가 AI가 바꾼 파일이나 저장(커밋)을 안전하게 되돌리고 싶을 때",
+      "priority": 12,
+      "keywords": [
+        "커밋 되돌리",
+        "커밋 취소",
+        "저장 취소",
+        "파일 원래대로",
+        "원래대로 돌려",
+        "ai가 고친 거 취소",
+        "실수로 지웠",
+        "rewind랑"
+      ]
+    },
+    {
       "skill": "git-teacher:git-teacher",
       "when": "Git·GitHub 작업 전반을 쉽게 도움받을 때",
       "priority": 5,

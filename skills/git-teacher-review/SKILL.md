@@ -28,7 +28,7 @@ gh auth status 2>&1                    # GitHub CLI 로그인 상태
 ### Step 2: 안전 검사
 
 1. **`.git` 없음**: "여기는 Git 프로젝트 폴더가 아니에요. '깃 시작해줘'로 먼저 설정하세요." → 중단
-2. **Detached HEAD**: "안전한 위치에서 벗어났어요. 자동으로 돌아갈게요." → `git checkout main` (또는 master) 실행 후 재시도
+2. **Detached HEAD**: "안전한 위치에서 벗어났어요. 지금 위치를 먼저 보존하고 돌아갈게요." → `git switch -c "rescue/$(date +%Y%m%d-%H%M%S)"`로 보존한 뒤 `git switch main` (또는 master) 실행 후 재시도
 3. **원격 저장소 없음**: "GitHub에 연결되어 있지 않아요. '깃 시작해줘'로 먼저 설정하세요." → 중단
 4. **gh 미로그인**: "GitHub CLI에 로그인되어 있지 않아요. '깃 시작해줘'로 설정하세요." → 중단
 5. **Merge Conflict** (`UU`, `AA` 등 감지 시): 충돌 해결 안내 (아래 "충돌 해결" 섹션 참조) → 중단
@@ -142,27 +142,13 @@ Step 2에서 현재 branch가 main/master가 아닌 경우:
 
 ## 충돌 해결
 
-Merge Conflict 감지 시 **EXECUTE:** 아래 JSON으로 AskUserQuestion 도구를 즉시 호출한다:
+Merge Conflict 감지 시 충돌 파일 목록을 보여주고, **덩어리 단위로 합친다** — `${CLAUDE_PLUGIN_ROOT}/skills/git-teacher-help/references/conflict-resolution.md` 절차를 Read로 읽고 그대로 따른다.
+- 충돌 구간마다 양쪽이 무엇을 바꿨는지 쉬운 말로 설명한다.
+- 함께 살 수 있는 수정은 에이전트가 합치고 결과를 보여준다.
+- 의도가 정말 부딪히는 덩어리만 AskUserQuestion으로 고르게 한다(내 쪽 / 상대 쪽 / 둘 다 살려 합치기).
+- 파일을 통째로 한쪽으로 덮는 선택은 기본으로 하지 않는다 — 같은 파일의 충돌 아닌 수정까지 사라진다.
 
-```json
-{
-  "questions": [{
-    "question": "두 사람이 같은 파일의 같은 부분을 동시에 고쳐서 충돌이 생겼어요. 어떻게 할까요?",
-    "header": "충돌 해결",
-    "options": [
-      {"label": "내가 수정한 걸로 유지", "description": "내 변경 내용을 사용해요"},
-      {"label": "상대방이 수정한 걸로 유지", "description": "상대방의 변경 내용을 사용해요"}
-    ],
-    "multiSelect": false
-  }]
-}
-```
-
-선택에 따라:
-- "내 거 유지": `git checkout --ours {파일}` → `git add {파일}`
-- "상대방 거 유지": `git checkout --theirs {파일}` → `git add {파일}`
-
-충돌 파일이 여러 개일 경우 파일 목록을 보여주고 일괄 처리한다.
+충돌 파일이 여러 개면 파일별로 같은 절차를 반복하고, 파일마다 "자동으로 합친 곳 / 고르신 곳" 수를 알려준다.
 
 ## 오류 처리
 

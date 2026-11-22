@@ -1,6 +1,6 @@
 ---
 name: git-teacher-status
-description: Translates current Git status into plain-language explanations for non-developers. Korean triggers: "상태 확인", "지금 어떤 상태?", "뭐가 바뀌었어?", "git status", "변경 사항", "뭐가 달라졌어?", "파일 확인". English triggers: "check status", "what changed", "git status".
+description: Translates current Git status into plain-language explanations for non-developers. Also explains in plain words what an AI agent changed. Korean triggers: "상태 확인", "지금 어떤 상태?", "뭐가 바뀌었어?", "AI가 뭘 바꿨어?", "에이전트가 뭐 고쳤어?", "git status", "변경 사항", "뭐가 달라졌어?", "파일 확인". English triggers: "check status", "what changed", "what did the agent change".
 ---
 
 <!-- first-run setup: idempotent, non-blocking, self-skips after first run -->
@@ -29,19 +29,17 @@ git remote -v                          # 원격 연결 상태
 우선순위 순서로 검사하고, 문제 발견 시 즉시 안내 후 중단:
 
 1. **`.git` 없음**: "여기는 Git 프로젝트 폴더가 아니에요. '깃 시작해줘'로 먼저 설정하세요."
-2. **Detached HEAD**: "안전한 위치에서 벗어났어요. 자동으로 돌아갈게요." → `git checkout main` (또는 master) 실행
-3. **Merge Conflict** (`UU`, `AA` 등): 충돌 파일 목록을 보여주고, AskUserQuestion으로 해결 방법을 제시한다:
+2. **Detached HEAD**: "안전한 위치에서 벗어나 있어요. 지금 위치에 저장된 작업이 사라지지 않게 먼저 구조용 이름표를 붙인 뒤 돌아갈게요."
+   ```bash
+   git switch -c "rescue/$(date +%Y%m%d-%H%M%S)"   # 지금 위치 보존 (커밋이 고아가 되지 않게)
+   git switch main 2>/dev/null || git switch master
    ```
-   두 사람이 같은 파일의 같은 부분을 동시에 고쳐서 충돌이 생겼어요.
-   충돌 파일: {파일 목록}
-
-   어떻게 할까요?
-   1. "내가 수정한 걸로 유지" — 내 변경 내용을 사용해요
-   2. "상대방이 수정한 걸로 유지" — 상대방의 변경 내용을 사용해요
-   ```
-   선택에 따라:
-   - "내 거 유지": `git checkout --ours {파일}` → `git add {파일}`
-   - "상대방 거 유지": `git checkout --theirs {파일}` → `git add {파일}`
+   구조용 브랜치 이름을 알려주고 "필요 없으면 나중에 지워도 돼요"라고 안내한다. 보존 없이 바로 main으로 이동하지 않는다.
+3. **Merge Conflict** (`UU`, `AA` 등): 충돌 파일 목록을 보여주고, **덩어리 단위로 합친다** — `${CLAUDE_PLUGIN_ROOT}/skills/git-teacher-help/references/conflict-resolution.md` 절차를 Read로 읽고 그대로 따른다.
+   - 충돌 구간마다 양쪽이 무엇을 바꿨는지 쉬운 말로 설명한다.
+   - 함께 살 수 있는 수정은 에이전트가 합치고 결과를 보여준다.
+   - 의도가 정말 부딪히는 덩어리만 AskUserQuestion으로 고르게 한다(내 쪽 / 상대 쪽 / 둘 다 살려 합치기).
+   - 파일을 통째로 한쪽으로 덮는 선택은 기본으로 하지 않는다 — 같은 파일의 충돌 아닌 수정까지 사라진다.
    충돌 해결 후 "저장해줘"로 다음 단계를 안내한다.
 
 ### Step 3: 상태 번역
@@ -99,6 +97,40 @@ GitHub에 올리지 않은 저장이 2개 있어요:
 
 이 폴더는 Git으로 관리되고 있지만, GitHub에 연결되어 있지 않아요.
 연결하려면 "깃 시작해줘"라고 하세요.
+```
+
+## Step 4.5: 에이전트가 바꾼 것 설명 ("AI가 뭘 바꿨어?")
+
+사용자가 Claude Code 같은 에이전트가 한 일을 묻거나, 변경 파일이 많아 사용자가 직접 고친 게 아닌 것 같을 때 실행한다.
+
+```bash
+git diff --stat HEAD                     # 아직 저장 안 한 변경 (파일별 줄 수)
+git ls-files --others --exclude-standard # 새로 생긴 파일
+git log --oneline --since="6 hours ago"  # 최근 저장 기록 (에이전트가 커밋했을 수 있음)
+bash "${CLAUDE_PLUGIN_ROOT}/scripts/safety_scan.sh" --worktree
+```
+
+파일별로 `git diff HEAD -- {파일}`을 읽고 **한 줄 쉬운 말**로 요약한다 (예: "로그인 화면: 비밀번호 틀렸을 때 안내 문구를 추가했어요"). 코드 조각을 그대로 붙이지 않는다.
+
+그다음 **위험 표시**를 붙인다 — 해당하는 것만:
+
+| 표시 | 조건 |
+|------|------|
+| 삭제 주의 | 파일 삭제, 또는 한 파일에서 지운 줄이 추가한 줄보다 훨씬 많음 |
+| 비밀값 주의 | safety_scan이 SECRET_NAME/SECRET_CONTENT를 보고함, 또는 `.env`·인증 파일 수정 |
+| 설정 변경 | `package.json`·lock 파일·`requirements*.txt`·`pyproject.toml`·CI(`.github/workflows`)·빌드 설정 수정 |
+| 데이터 주의 | DB 마이그레이션·스키마·데이터 파일 수정 |
+| 큰 파일 | safety_scan이 LARGE를 보고함 |
+
+출력 예:
+```
+AI가 바꾼 것 (파일 4개):
+  - 로그인 화면: 비밀번호 오류 안내 문구 추가
+  - 설정: 새 라이브러리 1개 추가 [설정 변경]
+  - 옛 도움말 페이지 삭제 [삭제 주의]
+  - 테스트: 로그인 실패 경우 확인 추가
+
+마음에 안 드는 게 있으면 "되돌려줘"라고 하세요. 괜찮으면 "저장해줘".
 ```
 
 ## Step 5: Branch 상태 안내
