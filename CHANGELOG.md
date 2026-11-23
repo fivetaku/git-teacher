@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.7.0 — 2026-11-23
+- **Same skills now run in Codex too.** (Codex에서도 같은 스킬로 동작) The `/git-teacher` entry logic moved into a new `git-teacher` skill (command is now a thin wrapper), every question-asking skill has a Claude Code / Codex run-environment block, and `skills/git-teacher-help/references/codex.md` documents the Codex question tools and fallbacks. Claude Code behavior is unchanged.
+
 
 ## 1.6.0 — 2026-11-22
 - Hunk-level conflict merge

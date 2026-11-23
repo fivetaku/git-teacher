@@ -28,6 +28,8 @@ You don't need to memorize commands. You don't need to know what a "commit hash"
 /plugin install git-teacher
 ```
 
+Codex: `codex plugin marketplace add fivetaku/gptaku_plugins`, then `codex plugin add git-teacher@gptaku-plugins`.
+
 ### 3. Restart Claude Code
 
 Restart is required for the plugin to load.
